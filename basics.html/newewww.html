@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Form Button</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f3f3f3;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+
+    button {
+      background-color: #4d79ff;
+      color: white;
+      border: none;
+      padding: 12px 35px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1e3aff;
+    }
+
+    @media (max-width: 600px) {
+      input {
+        width: 80%;
+      }
+      button {
+        width: 80%;
+        font-size: 16px;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form action="submit.html" method="post">
+    <label for="name">Enter Your Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Click Me</button>
+  </form>
+</body>
+</html>

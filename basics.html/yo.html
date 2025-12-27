@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <label>
+    <input type = "checkbox">
+    <div class="toogle">
+      <div class="O c"></div>
+      <div class="S c"></div>
+      <div class="T c"></div>
+    </div>
+    <div class="side">
+      <h1>MENU</h1>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Memebership</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </label>
+  <style>
+    *{
+      margin: 0px;
+    }
+    body{
+      background-color: azure;
+    }
+    .side{
+      background-color: black;
+      height: 450px;
+      width: 180px;
+      list-style: none;
+    }
+    h1{
+      color: azure;
+      position: relative;
+      left: 70px;
+      top:10px
+    }
+    ul li{
+      position: relative;
+      color: azure;
+      top: 30px;
+    }
+    ul li a{
+      color: azure;
+      text-decoration: none;
+      display: block;
+      padding: 5px 0;
+
+    }
+    ul li a:hover{
+      color: blue;
+    }
+
+    input {
+      display: none;
+    }
+
+    .toogle {
+      position: fixed;
+      top: 20px;
+      left: 20px; 
+      height: 25px;
+      width: 25px;
+      background-color: aliceblue;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 0 5px gray;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .toogle .c {
+      background-color: rgb(0, 0, 0);
+      height: 2px;
+      width: 15px;
+      border-radius: 2px;
+    }
+    .toogle:hover{
+      background-color: rgb(28, 39, 159);
+    }
+  </style>
+</body>
+</html>

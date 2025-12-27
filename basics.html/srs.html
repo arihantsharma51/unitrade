@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diwali Greeting</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: black;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    /* Hidden message box */
+    .message {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, orange, gold);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    /* Door container */
+    .doors {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      z-index: 2;
+    }
+
+    .door {
+      flex: 1;
+      background: maroon;
+      border: 2px solid gold;
+      transition: transform 1s ease;
+      border-radius: 10px;
+    }
+
+    /* Left door */
+    .door.left {
+      transform-origin: left;
+    }
+
+    /* Right door */
+    .door.right {
+      transform-origin: right;
+    }
+
+    /* Hover effect */
+    .card:hover .door.left {
+      transform: rotateY(-100deg);
+    }
+
+    .card:hover .door.right {
+      transform: rotateY(100deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="message">🎇 Happy Diwali 🎆</div>
+    <div class="doors">
+      <div class="door left"></div>
+      <div class="door right"></div>
+    </div>
+  </div>
+</body>
+</html>

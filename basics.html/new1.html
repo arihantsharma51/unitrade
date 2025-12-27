@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Example</title>
+    <style>
+        .container {
+            border: 2px solid black;
+            background-color: rgb(42, 132, 173);
+            height: 1500px; 
+            padding: 20px;
+            position: relative; 
+        }
+
+        .child {
+            border: 2px solid black;
+            background-color: yellow;
+            height: 20px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .child1 {
+            position: fixed;
+            bottom: 100px;
+            left: 100px;
+            background-color: bisque;
+            border: 2px solid black;
+            padding: 20px;
+        }
+        .child3 {
+            position: sticky;
+            top: 100px;
+            right: 200px;
+            background-color: bisque;
+            border: 2px solid black;
+            padding: 20px;
+
+        }
+        .child4 {
+            position: absolute;
+            top: 100px;
+            right: 200px;
+            background-color: bisque;
+            border: 2px solid black;
+            padding: 20px;
+
+        }
+        .child5 {
+            position: relative;
+            top: 400px;
+            right: 200px;
+            background-color: bisque;
+            border: 2px solid black;
+            padding: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child1">hello</div>
+        <div class="child">hello</div>
+        <div class="child2">hello</div>
+        <div class="child3">hello</div>
+        <div class="child4">h</div>
+        <div class="child5">hello</div>
+    </div>
+</body>
+</html>

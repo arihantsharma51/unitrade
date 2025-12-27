@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration</title>
+  <style>
+    :root { --gap: 12px; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      background: #f6f7fb;
+      margin: 0; padding: 24px;
+      display: grid; place-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      width: min(720px, 92vw);
+      background: #fff; border-radius: 16px;
+      padding: 20px 20px 16px; box-shadow: 0 10px 30px rgba(0,0,0,.07);
+    }
+    h1 { margin: 0 0 10px; font-size: 1.4rem; }
+    p.hint { margin: 0 0 18px; color: #555; }
+    form {
+      display: grid; gap: var(--gap);
+      grid-template-columns: 1fr 1fr;
+    }
+    .full { grid-column: 1 / -1; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .req { color: #d23; margin-left: 2px; }
+    input, textarea, button {
+      font: inherit;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #d7d9e0; border-radius: 10px;
+      background: #fff; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    textarea { resize: vertical; min-height: 84px; }
+    input:focus, textarea:focus {
+      border-color: #5a69ff;
+      box-shadow: 0 0 0 4px rgba(90,105,255,.12);
+    }
+    .error {
+      color: #c32020; font-size: .9rem; margin-top: 6px; display: none;
+    }
+    .field.invalid input,
+    .field.invalid textarea {
+      border-color: #c32020;
+      box-shadow: 0 0 0 4px rgba(195,32,32,.12);
+    }
+    .actions {
+      display: flex; gap: 10px; justify-content: flex-end;
+    }
+    button {
+      padding: 10px 14px; border: 0; border-radius: 10px;
+      cursor: pointer;
+    }
+    .save { background: #111827; color: #fff; }
+    .reset { background: #e5e7eb; }
+    .forgot { background: #5a69ff; color: #fff; }
+    @media (max-width: 640px) {
+      form { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-labelledby="title">
+    <h1 id="title">Registration</h1>
+    <p class="hint">Fields marked with <span class="req">*</span> are mandatory.</p>
+
+    <form id="regForm" novalidate>
+      <!-- User Name -->
+      <div class="field full">
+        <label for="name">User's Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g., Arihant Sharma" autocomplete="name"/>
+        <div class="error" id="err-name"></div>
+      </div>
+
+      <!-- Email (required) -->
+      <div class="field">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email"/>
+        <div class="error" id="err-email"></div>
+      </div>
+
+      <!-- Contact No (optional, 10-digit) -->
+      <div class="field">
+        <label for="phone">Contact No</label>
+        <input
+          type="tel" id="phone" name="phone" inputmode="numeric" placeholder="10-digit number"
+          pattern="^\d{10}$" title="Enter a 10-digit mobile number (digits only)"/>
+        <div class="error" id="err-phone"></div>
+      </div>
+
+      <!-- Password (required) -->
+      <div class="field">
+        <label for="password">Password <span class="req">*</span></label>
+        <input
+          type="password" id="password" name="password" placeholder="Min 8 chars"
+          minlength="8" required autocomplete="new-password"/>
+        <div class="error" id="err-password"></div>
+      </div>
+
+      <!-- Confirm Password (required) -->
+      <div class="field">
+        <label for="confirm">Confirm Password <span class="req">*</span></label>
+        <input
+          type="password" id="confirm" name="confirm" placeholder="Re-enter password"
+          minlength="8" required autocomplete="new-password"/>
+        <div class="error" id="err-confirm"></div>
+      </div>
+
+      <!-- Home Address (optional) -->
+      <div class="field full">
+        <label for="address">Home Address</label>
+        <textarea id="address" name="address" placeholder="House no, street, city, state, PIN" autocomplete="street-address"></textarea>
+        <div class="error" id="err-address"></div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="actions full">
+        <button type="button" class="forgot" id="forgotBtn">Forgot</button>
+        <button type="reset" class="reset">Reset</button>
+        <button type="submit" class="save">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Helpers
+    const byId = (id) => document.getElementById(id);
+    const setError = (fieldEl, errEl, msg) => {
+      if (msg) {
+        fieldEl.classList.add('invalid'); errEl.textContent = msg; errEl.style.display = 'block';
+      } else {
+        fieldEl.classList.remove('invalid'); errEl.textContent = ''; errEl.style.display = 'none';
+      }
+    };
+
+    const form = byId('regForm');
+
+    // Live validations
+    const validators = {
+      email: () => {
+        const field = byId('email').closest('.field');
+        const input = byId('email');
+        const err = byId('err-email');
+        if (!input.value) return setError(field, err, 'Email is required.');
+        if (!input.checkValidity()) return setError(field, err, 'Enter a valid email address.');
+        setError(field, err, '');
+      },
+      phone: () => {
+        const field = byId('phone').closest('.field');
+        const input = byId('phone');
+        const err = byId('err-phone');
+        if (!input.value) return setError(field, err, ''); // optional
+        if (!input.checkValidity()) return setError(field, err, 'Phone must be 10 digits.');
+        setError(field, err, '');
+      },
+      password: () => {
+        const field = byId('password').closest('.field');
+        const input = byId('password');
+        const err = byId('err-password');
+        if (!input.value) return setError(field, err, 'Password is required (min 8 chars).');
+        if (input.value.length < 8) return setError(field, err, 'Password must be at least 8 characters.');
+        setError(field, err, '');
+      },
+      confirm: () => {
+        const field = byId('confirm').closest('.field');
+        const input = byId('confirm');
+        const err = byId('err-confirm');
+        const pwd = byId('password').value;
+        if (!input.value) return setError(field, err, 'Please confirm your password.');
+        if (input.value !== pwd) return setError(field, err, 'Passwords do not match.');
+        setError(field, err, '');
+      },
+      name: () => {
+        const field = byId('name').closest('.field');
+        const input = byId('name');
+        const err = byId('err-name');
+        // optional but show hint if too short
+        if (input.value && input.value.trim().length < 2) return setError(field, err, 'Name looks too short.');
+        setError(field, err, '');
+      },
+      address: () => {
+        const field = byId('address').closest('.field');
+        const input = byId('address');
+        const err = byId('err-address');
+        // optional; no error unless extremely short non-empty
+        if (input.value && input.value.trim().length < 5) return setError(field, err, 'Address looks too short.');
+        setError(field, err, '');
+      }
+    };
+
+    // Attach listeners
+    byId('email').addEventListener('input', validators.email);
+    byId('phone').addEventListener('input', validators.phone);
+    byId('password').addEventListener('input', () => { validators.password(); validators.confirm(); });
+    byId('confirm').addEventListener('input', validators.confirm);
+    byId('name').addEventListener('input', validators.name);
+    byId('address').addEventListener('input', validators.address);
+
+    // Forgot button (you can replace with your route)
+    byId('forgotBtn').addEventListener('click', () => {
+      // Example behavior; replace URL with your Forgot Password page.
+      alert('Redirecting to Forgot Password…');
+      // location.href = '/forgot-password';
+    });
+
+    // Submit handler
+    form.addEventListener('submit', (e) => {
+      // Run all validators
+      validators.email();
+      validators.phone();
+      validators.password();
+      validators.confirm();
+      validators.name();
+      validators.address();
+
+      // If any visible error exists, block submit
+      const anyErrorVisible = [...form.querySelectorAll('.error')].some(el => el.style.display === 'block');
+      if (anyErrorVisible) {
+        e.preventDefault();
+        // Move focus to first invalid field for accessibility
+        const firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Demo action: prevent real submit and show payload
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      alert('Form valid ✅\n\n' + JSON.stringify(data, null, 2));
+      // In production, remove e.preventDefault() to let the form post to your server.
+    });
+  </script>
+</body>
+</html>

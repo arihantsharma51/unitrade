@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skew X-axis Example</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #89f7fe, #66a6ff);
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            background: #ff5733;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            transition: transform 0.5s ease;
+        }
+
+        /* On hover, skew along X-axis */
+        .box:hover {
+            transform: skewX(25deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">Skew X</div>
+
+</body>
+</html>
