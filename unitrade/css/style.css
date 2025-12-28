@@ -1,0 +1,286 @@
+/* =========================================================
+   GLOBAL RESET & VARIABLES
+========================================================= */
+:root {
+  --bg-main: #020617;
+  --bg-card: #020617;
+  --bg-soft: #0b1220;
+  --border-main: #1e293b;
+
+  --text-main: #f8fafc;
+  --text-soft: #cbd5f5;
+  --text-muted: #94a3b8;
+
+  --accent-1: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #22d3ee;
+
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #f87171;
+  --info: #38bdf8;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================================
+   BODY & BACKGROUND
+========================================================= */
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #1e293b, #020617 60%),
+    linear-gradient(135deg, #020617, #020617);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   LOGIN / HOME PAGE
+========================================================= */
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  margin-top: 8vh;
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid rgba(99,102,241,0.35);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.15),
+    0 40px 100px rgba(0,0,0,0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top glowing line */
+.auth-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 180%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-1),
+    var(--accent-2),
+    transparent
+  );
+}
+
+/* Login title */
+.auth-container h2 {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.auth-container .tagline {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 26px;
+}
+
+/* Inputs */
+.auth-container input,
+.auth-container select {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 15px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-container input::placeholder {
+  color: var(--text-muted);
+}
+
+.auth-container input:focus,
+.auth-container select:focus {
+  outline: none;
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.25);
+}
+
+/* Buttons */
+.auth-container button {
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-container button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(99,102,241,0.45);
+}
+
+.auth-container .secondary {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid var(--border-main);
+  color: var(--text-soft);
+}
+
+#msg {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+/* =========================================================
+   DASHBOARD WRAPPERS
+========================================================= */
+#buyer, #seller, #broker {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+/* Dashboard titles */
+.dash-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 26px;
+  position: relative;
+}
+
+.dash-title::after {
+  content: "";
+  width: 90px;
+  height: 3px;
+  display: block;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+
+/* Section headers */
+#buyer h4,
+#seller h4,
+#broker h4 {
+  margin-top: 30px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+/* =========================================================
+   INPUTS (DASHBOARD)
+========================================================= */
+#buyer input,
+#seller input,
+#buyer textarea,
+#seller textarea,
+#buyer select,
+#seller select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   BUTTONS (GLOBAL)
+========================================================= */
+button {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.4);
+}
+
+/* =========================================================
+   CARD SYSTEM
+========================================================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(99,102,241,0.25);
+}
+
+.card b {
+  color: var(--text-main);
+}
+
+.card small {
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   STATUS COLORS
+========================================================= */
+.status-pending { color: var(--warning); }
+.status-accepted { color: var(--success); }
+.status-rejected { color: var(--danger); }
+.status-completed { color: var(--info); }
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .auth-container {
+    margin: 20px;
+  }
+
+  #buyer, #seller, #broker {
+    margin: 20px;
+    padding: 22px;
+  }
+
+  .dash-title {
+    font-size: 22px;
+  }
+}
+#welcome {
+  display: none !important;
+}

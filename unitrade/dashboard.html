@@ -1,25 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
-<h2 id="loading">Loading...</h2>
+<h2 id="welcome">Loading...</h2>
+
+<!-- ================= BUYER ================= -->
 
 <div id="buyer" style="display:none">
-  <h3>Buyer Dashboard</h3>
+  <h3 class="dash-title">🛒 Buyer Dashboard</h3>
+
+
+  <select id="filterScope">
+    <option value="university">University</option>
+    <option value="city">City</option>
+    <option value="district">District</option>
+  </select>
+
+  <input id="filterValue" placeholder="e.g. GLA University" />
+  <button id="searchBtn">Search</button>
+
+  <div id="productsList"></div>
+
+  <h4>My Requests</h4>
+  <div id="buyerRequests"></div>
+
+  <h4>Give Feedback</h4>
+
+  <input
+    id="fbRating"
+    type="number"
+    min="1"
+    max="5"
+    placeholder="Rating (1–5)"
+  />
+
+  <input
+    id="fbComment"
+    placeholder="Comment"
+  />
+
+  <button id="sendFeedbackBtn">Submit Feedback</button>
+  <p id="fbMsg"></p>
 </div>
+
+<!-- ================= SELLER ================= -->
 
 <div id="seller" style="display:none">
-  <h3>Seller Dashboard</h3>
+  <h3 class="dash-title">🏷️ Seller Dashboard</h3>
+
+
+  <input id="pTitle" placeholder="Product title" />
+  <textarea id="pDesc" placeholder="Description"></textarea>
+
+  <select id="pCondition">
+    <option value="new">New</option>
+    <option value="2nd">2nd Hand</option>
+    <option value="3rd">3rd Hand</option>
+  </select>
+
+  <input id="pPrice" type="number" placeholder="Price" />
+
+  <select id="pScope">
+    <option value="university">University</option>
+    <option value="city">City</option>
+    <option value="district">District</option>
+  </select>
+
+  <input id="pScopeValue" placeholder="e.g. GLA University" />
+  <button id="addProductBtn">Add Product</button>
+
+  <p id="sellerMsg"></p>
+
+  <h4>Buy Requests</h4>
+  <div id="sellerRequests"></div>
 </div>
+
+<!-- ================= BROKER ================= -->
 
 <div id="broker" style="display:none">
-  <h3>Broker Dashboard</h3>
+  <h3 class="dash-title">🤝 Broker Dashboard</h3>
+
+
+  <h4>Available Deals</h4>
+  <div id="brokerDeals"></div>
+
+  <h4>My Active Deals</h4>
+  <div id="myBrokerDeals"></div>
 </div>
 
-<script type="module" src="js/firebase.js"></script>
+<!-- ================= MAIN SCRIPT ================= -->
+
 <script type="module" src="js/app.js"></script>
 
 </body>

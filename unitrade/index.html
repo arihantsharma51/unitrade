@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniTrade – Login</title>
+
+  <!-- ✅ LOGIN PAGE CSS -->
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <h2>UniTrade – Login</h2>
 
-  <input type="email" id="email" placeholder="Email" />
-  <input type="password" id="password" placeholder="Password" />
+  <!-- ✅ WRAPPER REQUIRED FOR CSS -->
+  <div class="auth-container">
+<h2>👑 UniTrade</h2>
+<p class="tagline">Buy • Sell • Broker — locally, smartly 🚀</p>
 
-  <select id="role">
-    <option value="buyer">Buyer</option>
-    <option value="seller">Seller</option>
-    <option value="broker">Broker</option>
-  </select>
 
-  <button id="signupBtn">Sign Up</button>
-  <button id="loginBtn">Login</button>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
 
-  <p id="msg"></p>
+    <select id="role">
+      <option value="buyer">Buyer</option>
+      <option value="seller">Seller</option>
+      <option value="broker">Broker</option>
+    </select>
 
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn" class="secondary">Create Account</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <!-- ✅ JS (UNCHANGED) -->
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/auth.js"></script>
-</body>
 
+</body>
 </html>

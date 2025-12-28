@@ -1,4 +1,3 @@
-alert("auth.js loaded");
 import { auth, db } from "./firebase.js";
 import {
   createUserWithEmailAndPassword,
@@ -26,12 +25,15 @@ document.getElementById("signupBtn").onclick = async () => {
     await setDoc(doc(db, "users", userCred.user.uid), {
       email: email.value,
       role: role.value,
+      successRate: 100,
+      badDeals: 0,
       createdAt: new Date()
     });
 
+    msg.innerText = "Signup successful!";
     window.location.href = "dashboard.html";
-  } catch (e) {
-    msg.innerText = e.message;
+  } catch (err) {
+    msg.innerText = err.message;
   }
 };
 
@@ -43,8 +45,9 @@ document.getElementById("loginBtn").onclick = async () => {
       password.value
     );
 
+    msg.innerText = "Login successful!";
     window.location.href = "dashboard.html";
-  } catch (e) {
-    msg.innerText = e.message;
+  } catch (err) {
+    msg.innerText = err.message;
   }
 };
